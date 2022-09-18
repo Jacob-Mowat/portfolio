@@ -28,6 +28,8 @@ export default function Projects({}: Props) {
         },
     ];
 
+    
+
     return (
         <motion.div 
             initial = {{ opacity: 0 }}
