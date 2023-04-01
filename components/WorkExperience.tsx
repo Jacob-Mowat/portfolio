@@ -1,10 +1,14 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import ExperienceCard from "./ExperienceCard"
+import { Experience, PageInfo } from '../typings';
 
-type Props = {};
+type Props = {
+    experiences: Experience[];
+    pageInfo: PageInfo;
+};
 
-export default function WorkExperience({}: Props) {
+export default function WorkExperience({ experiences, pageInfo }: Props) {
 
     return (
         <motion.div 
@@ -17,9 +21,9 @@ export default function WorkExperience({}: Props) {
             </h3>
 
             <div className="w-full flex space-x-5 overflow-x-scroll p-10 snap-x snap-mandatory scrollbar-thin scrollbar-track-grey-400/20 scrollbar-thumb-[#f7ab0a]/80">
-                <ExperienceCard />
-                <ExperienceCard />
-                <ExperienceCard />
+                {experiences.map(experience => (
+                    <ExperienceCard key={experience._id} experience={experience} pageInfo={pageInfo} />
+                ))}
             </div>
         </motion.div>
     )

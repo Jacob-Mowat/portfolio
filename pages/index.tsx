@@ -23,9 +23,15 @@ type Props= {
   socials: Social[]
 }
 
+// #3F2140
+// #7E49F2
+// #262473
+// #222A59
+// #0D0D0D
+
 const Home: NextPage = ({ pageInfo, experiences, skills, projects, socials}: Props) => {
   return (
-    <div className="bg-[rgb(36,36,36)] text-white h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0 scrollbar scrollbar-track-grey-400/20 scrollbar-thumb-[#f7ab0a]/80">
+    <div className="bg-[#0D0D0D] text-white h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0 scrollbar scrollbar-track-grey-400/20 scrollbar-thumb-[#f7ab0a]/80">
       <Head>
         <title>Jacob Mowat - portfolio</title>
       </Head>
@@ -33,23 +39,23 @@ const Home: NextPage = ({ pageInfo, experiences, skills, projects, socials}: Pro
       <Header socials={socials} />
 
       <section id="hero" className="snap-start">
-        <Hero />
+        <Hero pageInfo={pageInfo} />
       </section>
 
       <section id="about" className="snap-center">
-        <About />
+        <About pageInfo={pageInfo} />
       </section>
 
       <section id="experience" className="snap-center">
-        <WorkExperience />
+        <WorkExperience experiences={experiences} pageInfo={pageInfo} />
       </section>
 
       <section id="skills" className="snap-start">
-        <Skills />
+        <Skills skills={skills} />
       </section>
 
       <section id="projects" className="snap-start">
-        <Projects />
+        <Projects projects={projects} />
       </section>
 
       <section id="contact" className="snap-start">

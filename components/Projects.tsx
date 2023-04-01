@@ -1,34 +1,14 @@
 import React from "react"
 import { motion } from "framer-motion"
-import Project from "./Project"
+import { Project as Project_t } from "../typings"
+import { urlFor } from "../sanity";
 
-type Props = {};
+type Props = {
+    projects: Project_t[];
+};
 
-export default function Projects({}: Props) {
-    const projects = [ 
-        {
-            title: "Project 1",
-            description: "This is a project",
-            image: "https://picsum.photos/1200/900"
-        },
-        {
-            title: "Project 1",
-            description: "This is a project",
-            image: "https://picsum.photos/1200/900"
-        },
-        {
-            title: "Project 1",
-            description: "This is a project",
-            image: "https://picsum.photos/1200/900"
-        },
-        {
-            title: "Project 1",
-            description: "This is a project",
-            image: "https://picsum.photos/1200/900"
-        },
-    ];
-
-    
+export default function Projects(props: Props) {
+    const projects = props.projects;
 
     return (
         <motion.div 
@@ -46,7 +26,7 @@ export default function Projects({}: Props) {
                             transition = {{ duration: 1.2 }}
                             whileInView = {{ opacity: 1, y: 0 }}
                             viewport = {{ once: true }}
-                            src={project.image} 
+                            src={urlFor(project.image).url()}
                             alt="" 
                         />
 

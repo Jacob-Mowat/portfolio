@@ -1,9 +1,13 @@
 import React from "react"
 import { motion } from "framer-motion"
+import { PageInfo } from "../typings";
+import { urlFor } from "../sanity";
 
-type props = {};
+type props = {
+    pageInfo: PageInfo
+};
 
-export default function About({}: props) {
+export default function About({ pageInfo }: props) {
     
     return (
         <motion.div 
@@ -20,7 +24,7 @@ export default function About({}: props) {
                 transition={{ duration: 1.2 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 viewport={{ once: true }}
-                src="https://avatars.githubusercontent.com/u/4152339?v=4"
+                src={urlFor(pageInfo?.profilePic).url()}
                 className="-mb-20 md:mb-0 flex-shrink-0 w-56 h-56 rounded-full object-cover md:rounded-lg md:w-64 md:h-96 xl:w-[500px] xl:h-[600px]"
             ></motion.img>
 
@@ -30,13 +34,7 @@ export default function About({}: props) {
                     Here is a{" "}
                     <span className="underline decoration-[#f7ab0a]/50">little</span>{" "}
                     background</h4>
-                <p className="text-base">
-                    I'm a 17 year old software engineer from the UK. 
-                    I'm currently studying Computer Science at A-Level and I'm looking to study Computer Science at University. 
-                    I'm a full-stack developer with experience in React, Next.js, Node.js, Express, MongoDB, MySQL, and more. 
-                    I'm also a designer with experience in Figma, Adobe XD, and Adobe Photoshop. 
-                    I'm currently working on a few projects, including a social media platform, a website for a local business, and a website for a local charity.
-                </p>
+                <p className="text-base">{pageInfo?.backgroundInformation}</p>
             </div>
         </motion.div>
     )

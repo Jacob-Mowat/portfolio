@@ -3,7 +3,7 @@ import { groq } from 'next-sanity'
 import { sanityClient } from '../../sanity'
 import { Project } from '../../typings'
 
-const query = groq`*[_type == "project"] { ..., technologies[]-> }`
+const query = groq`*[_type == "project"] { ..., skills[]-> }`
 
 type Data = {
     projects: Project[]

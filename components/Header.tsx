@@ -32,7 +32,7 @@ export default function Header({ socials }: Props) {
                     initial={{ x: 500, opacity: 0, scale:0.5 }}
                     animate={{ x: 0, opacity: 1, scale:1 }}
                     transition={{ duration: 1.25 }}
-                    className="flex flex-row items-center text-grey-300 cursor-pointer">
+                    className="flex flex-row items-center text-[#222A59]-300 cursor-pointer">
                     <SocialIcon
                         className="cursor-pointer"
                         network="email"

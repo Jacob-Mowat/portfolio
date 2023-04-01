@@ -42,8 +42,8 @@ export default {
       type: 'boolean',
     },
     {
-      name: 'technologies',
-      title: 'Technologies',
+      name: 'skills',
+      title: 'Skills',
       type: 'array',
       of: [{ type: 'reference', to: { type: 'skill' }}],
     },
