@@ -1,6 +1,6 @@
-import React from "react"
-import { PhoneIcon, MapPinIcon, EnvelopeIcon } from "@heroicons/react/24/solid"
-import { useForm, SubmitHandler } from "react-hook-form"
+import React from "react";
+import { PhoneIcon, MapPinIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 type Inputs = {
     name: string;
@@ -9,13 +9,10 @@ type Inputs = {
     message: string;
 };
 
-type Props = {}
+type Props = {};
 
 export default function ContactMe({}: Props) {
-    const {
-        register,
-        handleSubmit
-    } = useForm<Inputs>();
+    const { register, handleSubmit } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = (formData) => {
         window.location.href = `mailto:zaxquit@pm.me?subject=${formData.subject}&body=Hi, my name is ${formData.name}. ${formData.message} (${formData.email})`;
     };
@@ -27,40 +24,70 @@ export default function ContactMe({}: Props) {
             </h3>
 
             <div className="flex flex-col space-y-10">
-                <h4  className="text-4xl font-semibold text-center">
-                    I've got just what you need.{" "}
-                    <span className="underline decoration-[#f7ab0a]/50">Lets Talk.</span>
+                <h4 className="text-4xl font-semibold text-center">
+                    I&apos;ve got just what you need.{" "}
+                    <span className="underline decoration-[#f7ab0a]/50">
+                        Lets Talk.
+                    </span>
                 </h4>
 
                 <div className="space-y-10">
                     <div className="flex items-center space-x-5 justify-center">
-                        <PhoneIcon className="tet-[#f7ab0a] h-7 w-7 animate-pulse"/>
+                        <PhoneIcon className="tet-[#f7ab0a] h-7 w-7 animate-pulse" />
                         <p className="text-2xl">+44 7778104059</p>
                     </div>
 
                     <div className="flex items-center space-x-5 justify-center">
-                        <EnvelopeIcon className="tet-[#f7ab0a] h-7 w-7 animate-pulse"/>
+                        <EnvelopeIcon className="tet-[#f7ab0a] h-7 w-7 animate-pulse" />
                         <p className="text-2xl">zaxquit@pm.me</p>
                     </div>
 
                     <div className="flex items-center space-x-5 justify-center">
-                        <MapPinIcon className="tet-[#f7ab0a] h-7 w-7 animate-pulse"/>
+                        <MapPinIcon className="tet-[#f7ab0a] h-7 w-7 animate-pulse" />
                         <p className="text-2xl">Edinburgh, EH12 5JL</p>
                     </div>
                 </div>
 
-                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-2 w-fit mx-auto">
+                <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    className="flex flex-col space-y-2 w-fit mx-auto"
+                >
                     <div className="flex space-x-2">
-                        <input {...register('name')} placeholder="Name" className="contactInput" type="text" name="name"/>
-                        <input {...register('email')} placeholder="Email" className="contactInput" type="email" name="email"/>
+                        <input
+                            {...register("name")}
+                            placeholder="Name"
+                            className="contactInput"
+                            type="text"
+                            name="name"
+                        />
+                        <input
+                            {...register("email")}
+                            placeholder="Email"
+                            className="contactInput"
+                            type="email"
+                            name="email"
+                        />
                     </div>
 
-                    <input {...register('subject')} placeholder="Subject" className="contactInput" type="text" name="subject"/>
+                    <input
+                        {...register("subject")}
+                        placeholder="Subject"
+                        className="contactInput"
+                        type="text"
+                        name="subject"
+                    />
 
-                    <textarea {...register('message')} placeholder="Message" className="contactInput" name="message"/>
-                    <button className="bg-[#f7ab0a] py-5 px-10 rounded-md text-black font-bold text-lg">Submit</button>
+                    <textarea
+                        {...register("message")}
+                        placeholder="Message"
+                        className="contactInput"
+                        name="message"
+                    />
+                    <button className="bg-[#f7ab0a] py-5 px-10 rounded-md text-black font-bold text-lg">
+                        Submit
+                    </button>
                 </form>
             </div>
         </div>
-    )
+    );
 }

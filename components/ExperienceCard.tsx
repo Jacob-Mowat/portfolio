@@ -1,16 +1,16 @@
-import React from "react"
-import { motion } from "framer-motion"
-import { Experience, Skill as Skill_t } from "../typings";
+import React from "react";
+import { motion } from "framer-motion";
+import { Experience, PageInfo, Skill as Skill_t } from "../typings";
 import exp from "constants";
 import { urlFor } from "../sanity";
 import Skill from "./Skill";
 
 type Props = {
     experience: Experience;
+    pageInfo: PageInfo;
 };
 
-export default function ExperienceCard({ experience }: Props) {
-
+export default function ExperienceCard({ experience, pageInfo }: Props) {
     console.log(experience.skills);
 
     return (
@@ -30,11 +30,18 @@ export default function ExperienceCard({ experience }: Props) {
                 <p className="font-bold text-2xl mt-1">Papa</p>
                 <div className="flex space-x-2 my-2">
                     {experience.skills.map((skill: Skill_t) => (
-                        <Skill key={skill._id} skill={skill} directionLeft={true} />
+                        <Skill
+                            key={skill._id}
+                            skill={skill}
+                            directionLeft={true}
+                        />
                     ))}
                 </div>
 
-                <p className="uppercase py-5 text-gray-500">{new Date(experience.dateStarted).toLocaleDateString()} - {new Date(experience.dateEnded).toLocaleDateString()}</p>
+                <p className="uppercase py-5 text-gray-500">
+                    {new Date(experience.dateStarted).toLocaleDateString()} -{" "}
+                    {new Date(experience.dateEnded).toLocaleDateString()}
+                </p>
 
                 <ul className="list-disc space-y-4 ml-5 text-lg">
                     {experience.points.map((point, i) => (
@@ -43,5 +50,5 @@ export default function ExperienceCard({ experience }: Props) {
                 </ul>
             </div>
         </article>
-    )
+    );
 }
