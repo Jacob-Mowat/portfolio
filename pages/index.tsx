@@ -29,7 +29,7 @@ type Props= {
 // #222A59
 // #0D0D0D
 
-const Home: NextPage = ({ pageInfo, experiences, skills, projects, socials}: Props) => {
+const Home: NextPage<Props> = ({ pageInfo, experiences, skills, projects, socials}: Props) => {
   return (
     <div className="bg-[#0D0D0D] text-white h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0 scrollbar scrollbar-track-grey-400/20 scrollbar-thumb-[#f7ab0a]/80">
       <Head>
