@@ -1,8 +1,8 @@
 import Link from "next/link";
 import React from "react";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
-import { urlFor } from "../../sanity";
-import { PageInfo } from "../../typings";
+import { urlFor } from "@/sanity";
+import { PageInfo } from "@/typings";
 import BackgroundCircles from "./BackgroundCircles";
 
 type Props = {
@@ -38,17 +38,17 @@ export default function Hero({ pageInfo }: Props) {
                 </h1>
 
                 <div className="pt-5">
-                    <Link href="#about" className="p-5">
-                        <button className="hero-button mx-5">About</button>
+                    <Link href="#about" passHref>
+                        <button className="hero-button mx-5 p-5">About</button>
                     </Link>
-                    <Link href="#experience">
-                        <button className="hero-button mx-5">Experience</button>
+                    <Link href="#experience" passHref>
+                        <button className="hero-button mx-5 p-5">Experience</button>
                     </Link>
-                    <Link href="#skills">
-                        <button className="hero-button mx-5">Skills</button>
+                    <Link href="#skills" passHref>
+                        <button className="hero-button mx-5 p-5">Skills</button>
                     </Link>
-                    <Link href="#projects">
-                        <button className="hero-button mx-5">Projects</button>
+                    <Link href="#projects" passHref>
+                        <button className="hero-button mx-5 p-5">Projects</button>
                     </Link>
                 </div>
             </div>

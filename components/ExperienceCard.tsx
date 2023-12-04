@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Experience, PageInfo, Skill as Skill_t } from "../../typings";
+import { Experience, PageInfo, Skill as Skill_t } from "@/typings";
 import exp from "constants";
-import { urlFor } from "../../sanity";
+import { urlFor } from "@/sanity";
 import Skill from "./Skill";
 
 type Props = {

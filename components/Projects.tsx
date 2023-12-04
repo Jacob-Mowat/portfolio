@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Project as Project_t } from "../../typings";
-import { urlFor } from "../../sanity";
+import { Project as Project_t } from "@/typings";
+import { urlFor } from "@/sanity";
 
 type Props = {
     projects: Project_t[];
