@@ -13,8 +13,8 @@ export default function Hero({ pageInfo }: Props) {
     const [text, count] = useTypewriter({
         words: [
             `Hello, My name is ${pageInfo?.name}.`,
-            "I'm a full-stack developer.",
-            "Machine Learning Enthusiast",
+            "Based in the UK.",
+            "ML/AI Enthusiast.",
         ],
         loop: true,
         delaySpeed: 2000,
