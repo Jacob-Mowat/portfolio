@@ -1,14 +1,21 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import Skill from "./Skill";
 import { Skill as SkillType } from "@/typings"
+import { fetchSkills } from "@/utils/fetchSkills";
 
-type Props = {
-    skills: SkillType[];
-};
 
-export default function Skills({ skills }: Props) {
+export default function Skills() {
+    const [skills, setSkills] = useState<SkillType[] | undefined>(undefined);
 
+    useEffect(() => {
+        const getData = async () => {
+            const response = await fetchSkills();
+            setSkills(response);
+        }
+
+        if(!skills) getData();
+    }, [skills]);
 
     return (
         <motion.div
@@ -22,9 +29,9 @@ export default function Skills({ skills }: Props) {
             <h3 className="absolute top-36 uppercase tracking-[3px] text-gray-500 text-sm pb-10">Hover over a skill for current proficiency</h3>
 
             <div className="grid grid-cols-4 gap-5 pt-10">
-                {skills.map((skill, index) => (
+                {skills ? skills.map((skill, index) => (
                     <Skill key={skill._id} skill={skill} directionLeft={(skills.length / 2) - index >= 0 ? true : false} />
-                ))}
+                )) : undefined}
             </div>
         </motion.div>
     )

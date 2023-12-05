@@ -1,7 +1,7 @@
 import { Skill } from '../typings';
 
 export const fetchSkills = async (): Promise<Skill[]> => {
-    const res = await fetch(`/api/getSkills`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/getSkills`, {
         headers: {
             "Content-Type": "application/json",
         }

@@ -1,15 +1,14 @@
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
 import { urlFor } from "@/sanity";
 import { PageInfo } from "@/typings";
 import BackgroundCircles from "./BackgroundCircles";
+import { fetchPageInfo } from "@/utils/fetchPageInfo";
 
-type Props = {
-    pageInfo: PageInfo;
-};
 
-export default function Hero({ pageInfo }: Props) {
+export default function Hero() {
+    const [pageInfo, setPageInfo] = useState<PageInfo>();
     const [text, count] = useTypewriter({
         words: [
             `Hello, My name is ${pageInfo?.name}.`,
@@ -20,12 +19,21 @@ export default function Hero({ pageInfo }: Props) {
         delaySpeed: 2000,
     });
 
+    useEffect(() => {
+        const getData = async () => {
+            const response = await fetchPageInfo();
+            setPageInfo(response);
+        }
+
+        if (!pageInfo) getData();
+    }, [pageInfo]);
+
     return (
         <div className="h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden">
             <BackgroundCircles />
             <img
                 className="relative rounded-full h-32 w-32 mx-auto object-cover"
-                src={urlFor(pageInfo?.heroImage).url()}
+                src={pageInfo ? urlFor(pageInfo?.heroImage).url() : undefined}
                 alt=""
             />
             <div className="z-10">

@@ -1,14 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import ExperienceCard from "./ExperienceCard";
 import { Experience, PageInfo } from "@/typings";
+import { fetchExperiences } from "@/utils/fetchExperiences";
+import { fetchPageInfo } from "@/utils/fetchPageInfo";
 
-type Props = {
-    experiences: Experience[];
-    pageInfo: PageInfo;
-};
 
-export default function WorkExperience({ experiences, pageInfo }: Props) {
+export default function WorkExperience() {
+    const [experiences, setExperiences] = useState<Experience[] | undefined>(undefined);
+    const [pageInfo, setPageInfo] = useState<PageInfo | undefined>(undefined);
+
+    useEffect(() => {
+        const getExp = async () => {
+            const exp = await fetchExperiences();
+            setExperiences(exp);
+        }
+
+        if(!experiences) getExp();
+    }, [experiences])
+
+    useEffect(() => {
+        const getPageInfo = async () => {
+            const response = await fetchPageInfo();
+            setPageInfo(response);
+        }
+
+        if(!pageInfo) getPageInfo();
+    }, [pageInfo])
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -21,13 +40,13 @@ export default function WorkExperience({ experiences, pageInfo }: Props) {
             </h3>
 
             <div className="w-full flex space-x-5 overflow-x-scroll p-10 snap-x snap-mandatory scrollbar-thin scrollbar-track-grey-400/20 scrollbar-thumb-[#f7ab0a]/80">
-                {experiences.map((experience) => (
+                {(experiences && pageInfo) ? experiences.map((experience) => (
                     <ExperienceCard
                         key={experience._id}
                         experience={experience}
                         pageInfo={pageInfo}
                     />
-                ))}
+                )) : undefined}
             </div>
         </motion.div>
     );

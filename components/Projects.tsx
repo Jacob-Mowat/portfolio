@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Project as Project_t } from "@/typings";
 import { urlFor } from "@/sanity";
+import { fetchProjects } from "@/utils/fetchProjects";
 
-type Props = {
-    projects: Project_t[];
-};
 
-export default function Projects(props: Props) {
-    const projects = props.projects;
+export default function Projects() {
+    const [projects, setProjects] = useState<Project_t[] | undefined>(undefined);
+
+    useEffect(() => {
+        const getData = async () => {
+            const response = await fetchProjects();
+            setProjects(response);
+        }
+
+        if(!projects) getData();
+    }, [projects]);
 
     return (
         <motion.div
@@ -22,7 +29,7 @@ export default function Projects(props: Props) {
             </h3>
 
             <div className="relative w-full flex overflow-x-scroll overflow-y-hidden snap-x snap-mandatory z-20 scrollbar-thin scrollbar-track-grey-400/20 scrollbar-thumb-[#f7ab0a]/80">
-                {projects.map((project, i) => (
+                {projects ? projects.map((project, i) => (
                     <div
                         key={i}
                         className="w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:p-44 h-screen"
@@ -54,7 +61,7 @@ export default function Projects(props: Props) {
                             </p>
                         </div>
                     </div>
-                ))}
+                )) : undefined}
             </div>
 
             <div className="w-full absolute top-[30%] bg-[#f7ab0a]/10 left-0 h-[500px] -skew-y-12" />

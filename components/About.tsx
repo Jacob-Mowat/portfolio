@@ -1,13 +1,21 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { PageInfo } from "@/typings";
 import { urlFor } from "@/sanity";
+import { fetchPageInfo } from "@/utils/fetchPageInfo";
 
-type props = {
-    pageInfo: PageInfo
-};
 
-export default function About({ pageInfo }: props) {
+export default function About() {
+    const [pageInfo, setPageInfo] = useState<PageInfo | undefined>(undefined);
+
+    useEffect(() => {
+        const getData = async () => {
+            const response = await fetchPageInfo();
+            setPageInfo(response);
+        }
+
+        if(!pageInfo) getData();
+    }, [pageInfo]);
     
     return (
         <motion.div 
@@ -24,7 +32,7 @@ export default function About({ pageInfo }: props) {
                 transition={{ duration: 1.2 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 viewport={{ once: true }}
-                src={urlFor(pageInfo?.profilePic).url()}
+                src={pageInfo ? urlFor(pageInfo?.profilePic).url() : undefined}
                 className="-mb-20 md:mb-0 flex-shrink-0 w-56 h-56 rounded-full object-cover md:rounded-lg md:w-64 md:h-96 xl:w-[500px] xl:h-[600px]"
             ></motion.img>
 
@@ -34,7 +42,7 @@ export default function About({ pageInfo }: props) {
                     Here is a{" "}
                     <span className="underline decoration-[#f7ab0a]/50">little</span>{" "}
                     background</h4>
-                <p className="text-base">{pageInfo?.backgroundInformation}</p>
+                <p className="text-base">{pageInfo ? pageInfo?.backgroundInformation : undefined}</p>
             </div>
         </motion.div>
     )
