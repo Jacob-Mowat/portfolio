@@ -29,7 +29,7 @@ export default function ExperienceCard({ experience, pageInfo }: Props) {
                 <h4 className="text-4xl font-light">CEO of PAPA</h4>
                 <p className="font-bold text-2xl mt-1">Papa</p>
                 <div className="flex space-x-2 my-2">
-                    {experience.skills.map((skill: Skill_t) => (
+                    {experience.skills?.map((skill: Skill_t) => (
                         <Skill
                             key={skill._id}
                             skill={skill}
@@ -44,7 +44,7 @@ export default function ExperienceCard({ experience, pageInfo }: Props) {
                 </p>
 
                 <ul className="list-disc space-y-4 ml-5 text-lg">
-                    {experience.points.map((point, i) => (
+                    {experience.points?.map((point, i) => (
                         <li key={i}>{point}</li>
                     ))}
                 </ul>
