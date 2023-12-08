@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { PhoneIcon, MapPinIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { PageInfo } from "typings";
+import { fetchPageInfo } from "@/utils/fetchPageInfo";
 
 type Inputs = {
     name: string;
@@ -12,10 +14,23 @@ type Inputs = {
 type Props = {};
 
 export default function ContactMe({}: Props) {
+    const [pageInfo, setPageInfo] = useState<PageInfo | undefined>(undefined);
+
+    useEffect(() => {
+        const getData = async () => {
+            const data = await fetchPageInfo();
+            setPageInfo(data);
+        }
+
+        if(!pageInfo) getData;
+    }, [pageInfo]);
+
     const { register, handleSubmit } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = (formData) => {
         window.location.href = `mailto:zaxquit@pm.me?subject=${formData.subject}&body=Hi, my name is ${formData.name}. ${formData.message} (${formData.email})`;
     };
+
+    if (!pageInfo) return null;
 
     return (
         <div className="h-screen flex relative flex-col text-center md:text-left md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center">
