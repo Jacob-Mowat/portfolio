@@ -27,7 +27,7 @@ export default function ContactMe({}: Props) {
 
     const { register, handleSubmit } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = (formData) => {
-        window.location.href = `mailto:zaxquit@pm.me?subject=${formData.subject}&body=Hi, my name is ${formData.name}. ${formData.message} (${formData.email})`;
+        window.location.href = `mailto:${pageInfo?.email}?subject=${formData.subject}&body=Hi, my name is ${formData.name}. ${formData.message} (${formData.email})`;
     };
 
     if (!pageInfo) return null;
@@ -49,17 +49,17 @@ export default function ContactMe({}: Props) {
                 <div className="space-y-10">
                     <div className="flex items-center space-x-5 justify-center">
                         <PhoneIcon className="tet-[#f7ab0a] h-7 w-7 animate-pulse" />
-                        <p className="text-2xl">+44 7778104059</p>
+                        <p className="text-2xl">{pageInfo?.phoneNumber}</p>
                     </div>
 
                     <div className="flex items-center space-x-5 justify-center">
                         <EnvelopeIcon className="tet-[#f7ab0a] h-7 w-7 animate-pulse" />
-                        <p className="text-2xl">zaxquit@pm.me</p>
+                        <p className="text-2xl">{pageInfo?.email}</p>
                     </div>
 
                     <div className="flex items-center space-x-5 justify-center">
                         <MapPinIcon className="tet-[#f7ab0a] h-7 w-7 animate-pulse" />
-                        <p className="text-2xl">Edinburgh, EH12 5JL</p>
+                        <p className="text-2xl">{pageInfo?.address}</p>
                     </div>
                 </div>
 
