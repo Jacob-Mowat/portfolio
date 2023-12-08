@@ -11,8 +11,6 @@ type Props = {
 };
 
 export default function ExperienceCard({ experience, pageInfo }: Props) {
-    console.log(experience.skills);
-
     return (
         <article className="flex flex-col rounded-lg items-center space-y-7 flex-shrink-0 w-[500px] md:w-[600px] xl:w-[900px] snap-center bg-[#292929] p-10 hover:opacity-100 opacity-40 cursor-pointer transition-opacity duration-200 overflow-hidden">
             <motion.img
@@ -22,12 +20,12 @@ export default function ExperienceCard({ experience, pageInfo }: Props) {
                 viewport={{ once: true }}
                 className="w-32 h-32 rounded-full xl:w-[200px] xl:h-[200px] object-cover object-center"
                 src={urlFor(experience?.companyImage).url()}
-                alt="avatar"
+                alt={`Company Logo for ${experience?.company}`}
             />
 
             <div className="px-0 md:px-10">
-                <h4 className="text-4xl font-light">CEO of PAPA</h4>
-                <p className="font-bold text-2xl mt-1">Papa</p>
+                <h4 className="text-4xl font-light">{experience?.jobTitle} @ {experience?.company}</h4>
+                <p className="font-bold text-2xl mt-1">{experience?.role}</p>
                 <div className="flex space-x-2 my-2">
                     {experience.skills?.map((skill: Skill_t) => (
                         <Skill
