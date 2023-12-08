@@ -17,6 +17,8 @@ export default function Projects() {
         if(!projects) getData();
     }, [projects]);
 
+    if(!projects) return null;
+
     return (
         <motion.div
             initial={{ opacity: 0 }}

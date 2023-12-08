@@ -17,6 +17,8 @@ export default function Skills() {
         if(!skills) getData();
     }, [skills]);
 
+    if (!skills) return null;
+    
     return (
         <motion.div
             initial={{ opacity: 0 }}

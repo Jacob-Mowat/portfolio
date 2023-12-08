@@ -28,6 +28,10 @@ export default function WorkExperience() {
         if(!pageInfo) getPageInfo();
     }, [pageInfo])
 
+    if (!experiences) return null;
+
+    if (!pageInfo) return null;
+
     return (
         <motion.div
             initial={{ opacity: 0 }}

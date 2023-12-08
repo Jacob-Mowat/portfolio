@@ -16,6 +16,8 @@ export default function Header() {
         if (!socials) getData();
     }, [socials]);
 
+    if(!socials) return null;
+
     return (
         <div className="sticky top-0 p-5 flex items-start justify-between max-w-7xl mx-auto z-20 xl:items-center">
             <motion.div 

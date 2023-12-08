@@ -16,6 +16,8 @@ export default function About() {
 
         if(!pageInfo) getData();
     }, [pageInfo]);
+
+    if (!pageInfo) return null;
     
     return (
         <motion.div 

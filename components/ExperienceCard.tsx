@@ -1,7 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Experience, PageInfo, Skill as Skill_t } from "@/typings";
-import exp from "constants";
 import { urlFor } from "@/sanity";
 import Skill from "./Skill";
 
@@ -37,8 +36,8 @@ export default function ExperienceCard({ experience, pageInfo }: Props) {
                 </div>
 
                 <p className="uppercase py-5 text-gray-500">
-                    {new Date(experience.dateStarted).toLocaleDateString()} -{" "}
-                    {new Date(experience.dateEnded).toLocaleDateString()}
+                    {experience?.dateStarted} -{" "}
+                    {experience?.dateEnded}
                 </p>
 
                 <ul className="list-disc space-y-4 ml-5 text-lg">
