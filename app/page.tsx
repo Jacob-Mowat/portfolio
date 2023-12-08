@@ -7,13 +7,13 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react';
 import { PageInfo } from 'typings';
 
-const DynamicHeader = dynamic(() => import("@/components/Header"), { loading:()=><p>…Loading</p>, ssr: true });
-const DynamicHero = dynamic(() => import("@/components/Hero"), { loading:()=><p>…Loading</p>, ssr: true }); 
-const DynamicAbout = dynamic(() => import("@/components/About"), { loading:()=><p>…Loading</p>, ssr: true }); 
-const DynamicWorkExperience = dynamic(() => import("@/components/WorkExperience"), { loading:()=><p>…Loading</p>, ssr: true }); 
-const DynamicSkills = dynamic(() => import("@/components/Skills"), { loading:()=><p>…Loading</p>, ssr: true }); 
-const DynamicProjects = dynamic(() => import("@/components/Projects"), { loading:()=><p>…Loading</p>, ssr: true }); 
-const DynamicContactMe = dynamic(() => import("@/components/ContactMe"), { loading:()=><p>…Loading</p>, ssr: true }); 
+const DynamicHeader = dynamic(() => import("@/components/Header"), { ssr: true });
+const DynamicHero = dynamic(() => import("@/components/Hero"), { ssr: true }); 
+const DynamicAbout = dynamic(() => import("@/components/About"), { ssr: true }); 
+const DynamicWorkExperience = dynamic(() => import("@/components/WorkExperience"), { ssr: true }); 
+const DynamicSkills = dynamic(() => import("@/components/Skills"), { ssr: true }); 
+const DynamicProjects = dynamic(() => import("@/components/Projects"), { ssr: true }); 
+const DynamicContactMe = dynamic(() => import("@/components/ContactMe"), { ssr: true }); 
 
 
 // #3F2140
