@@ -5,10 +5,12 @@ import { Experience, PageInfo } from "@/typings";
 import { fetchExperiences } from "@/utils/fetchExperiences";
 import { fetchPageInfo } from "@/utils/fetchPageInfo";
 
+type Props = {
+    pageInfo: PageInfo;
+};
 
-export default function WorkExperience() {
+export default function WorkExperience({ pageInfo } : Props) {
     const [experiences, setExperiences] = useState<Experience[] | undefined>(undefined);
-    const [pageInfo, setPageInfo] = useState<PageInfo | undefined>(undefined);
 
     useEffect(() => {
         const getExp = async () => {
@@ -19,18 +21,7 @@ export default function WorkExperience() {
         if(!experiences) getExp();
     }, [experiences])
 
-    useEffect(() => {
-        const getPageInfo = async () => {
-            const response = await fetchPageInfo();
-            setPageInfo(response);
-        }
-
-        if(!pageInfo) getPageInfo();
-    }, [pageInfo])
-
     if (!experiences) return null;
-
-    if (!pageInfo) return null;
 
     return (
         <motion.div

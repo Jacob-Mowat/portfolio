@@ -4,21 +4,11 @@ import { PageInfo } from "@/typings";
 import { urlFor } from "@/sanity";
 import { fetchPageInfo } from "@/utils/fetchPageInfo";
 
+type Props = {
+    pageInfo: PageInfo;
+};
 
-export default function About() {
-    const [pageInfo, setPageInfo] = useState<PageInfo | undefined>(undefined);
-
-    useEffect(() => {
-        const getData = async () => {
-            const response = await fetchPageInfo();
-            setPageInfo(response);
-        }
-
-        if(!pageInfo) getData();
-    }, [pageInfo]);
-
-    if (!pageInfo) return null;
-    
+export default function About({ pageInfo } : Props) {
     return (
         <motion.div 
             initial={{ opacity: 0 }}

@@ -1,8 +1,11 @@
 'use client';
 
+import { fetchPageInfo } from '@/utils/fetchPageInfo';
 import dynamic from 'next/dynamic';
 import Head from 'next/head'
 import Link from 'next/link'
+import { useEffect, useState } from 'react';
+import { PageInfo } from 'typings';
 
 const DynamicHeader = dynamic(() => import("@/components/Header"), { loading:()=><p>…Loading</p>, ssr: true });
 const DynamicHero = dynamic(() => import("@/components/Hero"), { loading:()=><p>…Loading</p>, ssr: true }); 
@@ -20,6 +23,19 @@ const DynamicContactMe = dynamic(() => import("@/components/ContactMe"), { loadi
 // #0D0D0D
 
 export default function HomePage() {
+    const [pageInfo, setPageInfo] = useState<PageInfo | undefined>(undefined);
+
+    useEffect(() => {
+        const getData = async () => {
+            const response = await fetchPageInfo();
+            setPageInfo(response);
+        }
+
+        if (!pageInfo) getData();
+    }, [pageInfo]);
+
+    if (!pageInfo) return null;
+
     return (
         <>
             <Head>
@@ -29,15 +45,15 @@ export default function HomePage() {
                 <DynamicHeader />
 
                 <section id="hero" className="snap-start">
-                    <DynamicHero />
+                    <DynamicHero pageInfo={pageInfo} />
                 </section>
 
                 <section id="about" className="snap-center">
-                    <DynamicAbout />
+                    <DynamicAbout pageInfo={pageInfo}/>
                 </section>
 
                 <section id="experience" className="snap-center">
-                    <DynamicWorkExperience />
+                    <DynamicWorkExperience pageInfo={pageInfo} />
                 </section>
 
                 <section id="skills" className="snap-start">
@@ -49,7 +65,7 @@ export default function HomePage() {
                 </section>
 
                 <section id="contact" className="snap-start">
-                    <DynamicContactMe />
+                    <DynamicContactMe pageInfo={pageInfo} />
                 </section>
 
                 <footer className='sticky bottom-5 w-full cursor-pointer'>

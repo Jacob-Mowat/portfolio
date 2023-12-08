@@ -11,26 +11,15 @@ type Inputs = {
     message: string;
 };
 
-type Props = {};
+type Props = {
+    pageInfo: PageInfo;
+};
 
-export default function ContactMe({}: Props) {
-    const [pageInfo, setPageInfo] = useState<PageInfo | undefined>(undefined);
-
-    useEffect(() => {
-        const getData = async () => {
-            const data = await fetchPageInfo();
-            setPageInfo(data);
-        }
-
-        if(!pageInfo) getData;
-    }, [pageInfo]);
-
+export default function ContactMe({ pageInfo }: Props) {
     const { register, handleSubmit } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = (formData) => {
         window.location.href = `mailto:${pageInfo?.email}?subject=${formData.subject}&body=Hi, my name is ${formData.name}. ${formData.message} (${formData.email})`;
     };
-
-    if (!pageInfo) return null;
 
     return (
         <div className="h-screen flex relative flex-col text-center md:text-left md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center">

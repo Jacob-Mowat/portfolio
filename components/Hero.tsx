@@ -6,9 +6,11 @@ import { PageInfo } from "@/typings";
 import BackgroundCircles from "./BackgroundCircles";
 import { fetchPageInfo } from "@/utils/fetchPageInfo";
 
+type Props = {
+    pageInfo: PageInfo;
+}
 
-export default function Hero() {
-    const [pageInfo, setPageInfo] = useState<PageInfo>();
+export default function Hero({ pageInfo } : Props) {
     const [text, count] = useTypewriter({
         words: [
             `Hello, My name is ${pageInfo?.name}.`,
@@ -18,17 +20,6 @@ export default function Hero() {
         loop: true,
         delaySpeed: 2000,
     });
-
-    useEffect(() => {
-        const getData = async () => {
-            const response = await fetchPageInfo();
-            setPageInfo(response);
-        }
-
-        if (!pageInfo) getData();
-    }, [pageInfo]);
-
-    if (!pageInfo) return null;
 
     return (
         <div className="h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden">
